@@ -102,3 +102,7 @@ input[type="number"] {
     right: 160px;
   }
 }
+
+.prose a {
+  @apply text-primary underline;
+}
