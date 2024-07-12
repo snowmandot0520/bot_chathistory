@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "./ui/button";
 import { createClient } from "@/lib/supabase/client";
 import LoadingIcon from "./loading";
+import { ExitIcon } from "@radix-ui/react-icons";
 
 function SignoutButton() {
   const [isLoading, setIsLoading] = React.useState(false);
@@ -24,9 +25,9 @@ function SignoutButton() {
       variant="outline"
       disabled={isLoading}
       className="gap-2"
+      size="icon"
     >
-      {isLoading && <LoadingIcon />}
-      {isLoading ? "Signing out..." : "Sign out"}
+      {isLoading ? <LoadingIcon /> : <ExitIcon />}
     </Button>
   );
 }
