@@ -78,9 +78,17 @@ export default function Hero() {
             sections to your project.
           </p>
 
-          <Button className="w-full md:w-1/3" asChild>
-            <Link href="/chat">Get Started</Link>
-          </Button>
+          <div className="flex flex-wrap gap-2">
+            <Button className="w-full md:w-1/3" asChild>
+              <Link href="/chat">Get Started</Link>
+            </Button>
+            <Button variant="outline" className="max-md:w-full gap-2">
+              <GitHubLogoIcon />
+              <a href="/chat" target="_blank">
+                Github
+              </a>
+            </Button>
+          </div>
         </div>
 
         {/* Hero cards sections */}
