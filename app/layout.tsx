@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/react";
 import ClientProvider from "@/components/client-provider";
 import "./globals.css";
 import { Metadata } from "next";
@@ -23,6 +24,7 @@ export default function Layout({
       </head>
       <body>
         <ClientProvider>{children}</ClientProvider>
+        <Analytics />
       </body>
     </html>
   );
