@@ -1,4 +1,5 @@
 import { getUser } from "@/lib/actions/auth";
+import { createClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 
 export default async function Layout({
@@ -6,9 +7,13 @@ export default async function Layout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const user = await getUser();
+  const supabase = createClient();
 
-  if (user.aud === "authenticated") redirect("/");
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
+  if (session) redirect("/");
   return (
     <main className="p-4 container min-h-screen flex items-center">
       {children}

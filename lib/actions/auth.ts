@@ -58,6 +58,8 @@ export async function signout() {
 }
 
 export async function getUser() {
+  // NOTE: Use only when user is authenticated
+
   const supabase = createClient();
   const { data: userData, error: userError } = await supabase.auth.getUser();
 
