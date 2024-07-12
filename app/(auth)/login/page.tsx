@@ -1,5 +1,9 @@
+"use client";
+
+import { useTransition } from "react";
 import Link from "next/link";
 
+import { login } from "@/lib/actions/auth";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -10,9 +14,10 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { login } from "@/lib/actions/auth";
 
 export default function LoginForm() {
+  const [pending, startTransition] = useTransition();
+
   return (
     <Card className="mx-auto max-w-sm w-full">
       <CardHeader>
@@ -22,7 +27,11 @@ export default function LoginForm() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <form action="">
+        <form
+          action={(formdata) =>
+            startTransition(async () => await login(formdata))
+          }
+        >
           <div className="grid gap-4">
             <div className="grid gap-2">
               <Label htmlFor="email">Email</Label>
@@ -38,7 +47,12 @@ export default function LoginForm() {
               <Label htmlFor="password">Password</Label>
               <Input id="password" name="password" type="password" required />
             </div>
-            <Button type="submit" formAction={login} className="w-full">
+            <Button
+              type="submit"
+              className="w-full"
+              loading={pending}
+              loadingText=""
+            >
               Login
             </Button>
           </div>

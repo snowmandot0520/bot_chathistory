@@ -1,5 +1,9 @@
-import Link from "next/link";
+"use client";
 
+import Link from "next/link";
+import { useTransition } from "react";
+
+import { signup } from "@/lib/actions/auth";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -10,9 +14,10 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { signup } from "@/lib/actions/auth";
 
 export default function SignUpForm() {
+  const [pending, startTransition] = useTransition();
+
   return (
     <Card className="mx-auto max-w-sm">
       <CardHeader>
@@ -21,10 +26,13 @@ export default function SignUpForm() {
           Enter your information to create an account <br />
           Email verification is turned off due to rate limiting.
         </CardDescription>
-        <CardDescription></CardDescription>
       </CardHeader>
       <CardContent>
-        <form action="">
+        <form
+          action={(formdata) =>
+            startTransition(async () => await signup(formdata))
+          }
+        >
           <div className="grid gap-4">
             <div className="grid grid-cols-2 gap-4">
               <div className="grid gap-2">
@@ -60,7 +68,12 @@ export default function SignUpForm() {
               <Label htmlFor="password">Password</Label>
               <Input name="password" id="password" type="password" />
             </div>
-            <Button formAction={signup} type="submit" className="w-full">
+            <Button
+              type="submit"
+              className="w-full"
+              loading={pending}
+              loadingText="Creating..."
+            >
               Create an account
             </Button>
           </div>

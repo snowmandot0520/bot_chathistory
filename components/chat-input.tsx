@@ -81,8 +81,10 @@ function ChatInput({ messages, setMessages }: ChatInputProps) {
           size="icon"
           type="submit"
           disabled={!input || isLoading}
+          loading={isLoading}
+          loadingText=""
         >
-          {isLoading ? <LoadingIcon /> : <ArrowUpIcon />}
+          <ArrowUpIcon />
         </Button>
       </div>
     </form>

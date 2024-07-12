@@ -2,32 +2,34 @@
 
 import React from "react";
 import { useRouter } from "next/navigation";
-import { Button } from "./ui/button";
-import { createClient } from "@/lib/supabase/client";
-import LoadingIcon from "./loading";
 import { ExitIcon } from "@radix-ui/react-icons";
 
+import { Button } from "./ui/button";
+import { createClient } from "@/lib/supabase/client";
+
 function SignoutButton() {
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [isPending, startTransition] = React.useTransition();
   const supabase = createClient();
   const router = useRouter();
 
   async function handleSignOut() {
-    setIsLoading(true);
-    await supabase.auth.signOut();
-    setIsLoading(false);
-    router.push("/login");
+    startTransition(async () => {
+      await supabase.auth.signOut();
+      router.push("/login");
+    });
   }
 
   return (
     <Button
       onClick={handleSignOut}
       variant="outline"
-      disabled={isLoading}
+      disabled={isPending}
       className="gap-2"
       size="icon"
+      loading={isPending}
+      loadingText=""
     >
-      {isLoading ? <LoadingIcon /> : <ExitIcon />}
+      <ExitIcon />
     </Button>
   );
 }
