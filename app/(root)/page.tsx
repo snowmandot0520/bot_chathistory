@@ -82,9 +82,9 @@ export default function Hero() {
             <Button className="w-full md:w-1/3" asChild>
               <Link href="/chat">Get Started</Link>
             </Button>
-            <Button variant="outline" className="max-md:w-full gap-2">
-              <GitHubLogoIcon />
-              <a href="/chat" target="_blank">
+            <Button variant="outline" className="max-md:w-full gap-2" asChild>
+              <a href="https://github.com/soham2k06" target="_blank">
+                <GitHubLogoIcon className="mr-2" />
                 Github
               </a>
             </Button>
