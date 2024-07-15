@@ -74,8 +74,8 @@ export default function Hero() {
           </main>
 
           <p className="text-xl text-muted-foreground md:w-10/12 mx-auto lg:mx-0">
-            Build your React landing page effortlessly with the required
-            sections to your project.
+            A full stack web developer with expertise in React, Next.js and
+            TypeScript.
           </p>
 
           <div className="flex flex-wrap gap-2">
