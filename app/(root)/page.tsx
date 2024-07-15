@@ -83,7 +83,7 @@ export default function Hero() {
               <Link href="/chat">Get Started</Link>
             </Button>
             <Button variant="outline" className="max-md:w-full gap-2" asChild>
-              <a href="https://github.com/soham2k06" target="_blank">
+              <a href="https://github.com/soham2k06/sohamai" target="_blank">
                 <GitHubLogoIcon className="mr-2" />
                 Github
               </a>
